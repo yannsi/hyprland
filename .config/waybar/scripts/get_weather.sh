@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # get_weather.sh
 
-location=真嘉比
+location=座間味
 
 for i in {1..5}
 do
