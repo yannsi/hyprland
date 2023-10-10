@@ -1,0 +1,87 @@
+#キーボードショートカットキー
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+windowsマーク + Q  terminator
+windowsマーク + C killactive 
+windowsマーク + M exit 
+windowsマーク + E  pcmanfm
+windowsマーク + V togglefloating 
+windowsマーク + R  rofi -show drun
+windowsマーク + P pseudo # dwindle
+windowsマーク + J togglesplit # dwindle
+windowsマーク + F  firefox
+windowsマーク + Z  waybar
+windowsマーク + SHIFT Z  killall waybar
+windowsマーク + Y  terminator -e "$HOME/.local/bin/yt"
+windowsマーク + W  terminator -e nmtui-connect
+windowsマーク + A  terminator -e alsamixer
+Ctrl Alt F  flameshot gui
+Ctrl Alt V  terminator -e cava
+
+# ボリューム
+キーボードのボリュームプラスボタン　（ボリューム大）
+キーボードのボリュームマイナスボタン　（ボリューム小）
+
+# スクリーンショット
+windowsマーク + PRINT (ウィンドウのスクリーンショット)
+PRINT (モニター全画面のスクリーンショット)
+SHIFT + PRINT (選択範囲のスクリーンショット)
+
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+# windowsマーク + 矢印キーでフォーカスを移動
+windowsマーク + left 
+windowsマーク + right 
+windowsマーク + up
+windowsマーク + down 
+
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+# windowsマーク + [0-9]でワークスペースを切り替える
+windowsマーク + 1 （ワークスペース切替 1）
+windowsマーク + 2 （ワークスペース切替 2）
+windowsマーク + 3 （ワークスペース切替 3）
+windowsマーク + 4 （ワークスペース切替 4）
+windowsマーク + 5 （ワークスペース切替 5）
+windowsマーク + 6 （ワークスペース切替 6）
+windowsマーク + 7 （ワークスペース切替 7）
+windowsマーク + 8 （ワークスペース切替 8）
+windowsマーク + 9 （ワークスペース切替 9）
+windowsマーク + 0 （ワークスペース切替 10）
+
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+# windowsマーク + SHIFT + [0-9] でアクティブウィンドウをワークスペースに移動する
+windowsマーク + SHIFT 1 （ワークスペース1へ移動）
+windowsマーク + SHIFT 2 （ワークスペース2へ移動）
+windowsマーク + SHIFT 3 （ワークスペース3へ移動）
+windowsマーク + SHIFT 4 （ワークスペース4へ移動）
+windowsマーク + SHIFT 5 （ワークスペース5へ移動）
+windowsマーク + SHIFT 6 （ワークスペース6へ移動）
+windowsマーク + SHIFT 7 （ワークスペース7へ移動）
+windowsマーク + SHIFT 8 （ワークスペース8へ移動）
+windowsマーク + SHIFT 9 （ワークスペース9へ移動）
+windowsマーク + SHIFT 0 （ワークスペース10へ移動）
+
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+windowsマーク + マウススクロールダウン （他のワークスペースに進む）
+windowsマーク + マウススクロールアップ （他のワークスペースに戻る）
+
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+# ウィンドウ移動・リサイズ
+windowsマーク + マウスの左ドラッグ （ウィンドウ移動）
+windowsマーク + マウスの右ドラッグ （ウィンドウサイズ変更）
+
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### waybar（画面上部にあるバー）からもアプリの起動や設定が行える
+
+waybarの設定ファイルの場所
+$HOME/.config/waybar/config.jsonc
+
+waybarスタイル設定の場所
+＄HOME/.config/waybar/style.css
+
+
