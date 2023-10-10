@@ -1,0 +1,12 @@
+#!/bin/bash
+
+aaa=$(gum input)
+
+if [ -n "$aaa" ]; then
+$HOME/.local/bin/yt /"$aaa"
+
+else
+exit 1
+
+fi
+
