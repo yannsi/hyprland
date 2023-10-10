@@ -1,0 +1,263 @@
+{
+    "position": "top",
+    "layer": "top",
+    "height": 39,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "modules-left": ["custom/launcher", "custom/terminator", "custom/folder", "custom/firefox", "hyprland/workspaces", "custom/radio", "custom/youtube", "custom/media"],
+    "modules-center": ["custom/hyprpicker", "custom/flameshot", "custom/wallpaper"],
+    "modules-right": ["custom/trans", "custom/icon", "tray", "wireplumber", "network", "custom/weather", "clock", "custom/logout"],
+    
+    
+// Modules configuration
+
+
+//時計
+"clock": {
+	"format": " {:%H:%M}",
+	"tooltip": "true",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": " {:%m/%d}"
+},
+
+
+//ワークスペース
+"hyprland/workspaces": {
+	"format": "{name}",
+	"format-icons": {
+	"active": "",
+	"default": "",
+	"persistent": "",
+	},
+	"on-scroll-up": "hyprctl dispatch workspace e+1",
+	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	"all-outputs": false,
+	"persistent_workspaces": {
+	"*": 3,
+	},
+},
+
+
+  "memory": {
+    "format": "󰍛 {}%",
+    "format-alt": "󰍛 {used}/{total} GiB",
+    "interval": 5
+  },
+
+  "cpu": {
+    "format": "󰻠 {usage}%",
+    "format-alt": "󰻠 {avg_frequency} GHz",
+    "interval": 5
+  },
+
+  "disk": {
+    "format": "󰋊 {}%",
+    "format-alt": "󰋊 {used}/{total} GiB",
+    "interval": 5,
+    "path": "/"
+  },
+
+
+//ネットワーク
+"network": {
+    "format": "{ifname}",
+    //"format-alt": " {ipaddr}  ",
+    "format-wifi": "   ",
+    "format-ethernet": "{ipaddr}/{cidr} 󰊗 ",
+    "format-disconnected": " ネットワーク設定 ", //An empty format will hide the module.
+    "tooltip-format": "{ifname} via {gwaddr} 󰊗 ",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
+    "tooltip-format-ethernet": "{ifname}  ",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "terminator -e nmtui-connect",
+    "on-click-right": "killall nmtui-connect",
+    "on-click-middle": "bash $HOME/.config/waybar/scripts/server2.sh",
+    "max-length": 50
+},
+
+
+//mozc
+"tray": {
+	"icon-size": 16,
+	"spacing": 5
+},
+
+
+//音量
+"wireplumber": {
+	"format": " {icon}{volume}% ",
+        "format-muted": " 󰝟 ",
+	"format-icons": ["󰕿", "󰖀", "󰕾"], 
+        "on-click": "bash $HOME/.config/waybar/scripts/nizyuukidou.sh",
+        "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && sleep 1",
+        "on-click-right": "terminator -fe alsamixer",
+        "max-volume": 150,
+        "scroll-step": 0.7,
+        "tooltip": true,
+        "tooltip-format": "音量（マウスホイールで調節・右クリックで alsamixer が開きます）",
+},
+
+
+//ランチャー（アプリ選択メニュー）
+"custom/launcher": {
+    "format": "",
+    "return-type": "json",
+    "exec": "echo -e '{\"tooltip\": \"アプリケーションを検索\"}'",
+    "tooltip": "true",
+    "on-click": "rofi -show drun",
+    "on-click-right": "killall rofi",  
+    "on-click-middle": "rofi -show run"
+},
+
+
+//動画や音楽の視聴時に表示される
+"custom/media": {
+    "format": " {icon}{} ",
+    "return-type": "json",
+    "format-icons": {
+        "Playing": " ",
+        "Paused": " ",
+        "stop": " ",
+    },
+    "max-length":70,
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}}  {{markup_escape(title)}}\", \"tooltip\": \"{{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "on-click": "playerctl play-pause",
+    "on-click-middle": "terminator -e cava",
+    "on-click-right": "playerctl stop"
+},
+
+
+//スクリーンショット
+"custom/flameshot": {
+	"exec": "$HOME/.config/waybar/scripts/tooltip_shot.sh",
+	"format": " {}  ",
+	"return-type": "json",
+	"tooltip": "true",
+	"on-click": "flameshot gui",
+        //"on-click-right": "hyprshot -m output",
+},
+
+
+//youtubeの検索
+"custom/youtube": {
+    "format": "    ",
+    "return-type": "json",
+    "exec": "echo -e '{\"tooltip\": \"Youtubeを検索（右クリックでブラウザを開かずに検索）\"}'",
+    "tooltip": "true",
+    "on-click": "firefox --new-window https://www.youtube.com/",
+    "on-click-right": "bash $HOME/.config/waybar/scripts/mmv0.sh",
+    "on-click-middle": "killall mpv",
+},
+
+
+//PCmanfm（ファイラー）
+"custom/folder": {
+    "format": "    ",
+    "exec": "echo -e '{\"tooltip\": \"ファイラー\"}'",
+    "return-type": "json",
+    "tooltip": true,
+    "on-click": "pcmanfm",
+    "on-click-right": "killall pcmanfm",
+},
+
+
+//アイコンの検索
+"custom/icon": {
+    "format": "    ", 
+    "return-type": "json",
+    "exec": "echo -e '{\"tooltip\": \"アイコンを検索\"}'",
+    "tooltip": "true",
+    "on-click": "firefox --new-window https://fontawesome.com/search?o=r&m=free",
+   // "on-click-right": "",
+},
+
+
+//翻訳サイトへ
+"custom/trans": {
+    "format": " 翻訳 ", 
+    "on-click": "firefox --new-window https://www.deepl.com/translator",
+   // "on-click-right": "",
+},
+
+
+//firefox（ブラウザ）
+"custom/firefox": {
+    "format": "    ",
+    "exec": "echo -e '{\"tooltip\": \"firefox ブラウザ\"}'",
+    "return-type": "json",
+    "tooltip": true,
+    "on-click": "firefox",
+    //"on-click-right": "killall firefox",
+},
+
+
+//terminator(シェル)
+"custom/terminator": {
+    "format": "    ",
+    "exec": "echo -e '{\"tooltip\": \"ターミナル(terminator)\"}'",
+    "return-type": "json",
+    "tooltip": true,
+    "on-click": "terminator",
+},
+
+
+//インターネットラジオ
+"custom/radio": {
+    "format": "    ",
+    "exec": "$HOME/.config/waybar/scripts/tooltip_radio.sh",
+    "return-type": "json",
+    "tooltip": true,
+    "on-click": "mpv https://smoothjazz.cdnstream1.com/2585_128.mp3",
+    "on-click-right": "mpv https://play.antenne.de/classic-rock-live.m3u",
+    "on-click-middle": "bash $HOME/.config/waybar/scripts/radiostation.sh",
+},
+
+
+//シャットダウン・再起動　等
+"custom/logout": {
+    "format": "    ",
+    "exec": "echo -e '{\"tooltip\": \"シャットダウン/再起動\"}'",
+    "return-type": "json",
+    "tooltip": true,
+    "on-click": "rofi -show p -modi p:$HOME/.config/waybar/scripts/rofi-power-menu",
+    "on-click-right": "killall rofi",
+    "on-click-middle": "systemctl poweroff",
+},
+
+
+//壁紙設定
+"custom/wallpaper": {
+    "format": " {} ",
+    "exec": "$HOME/.config/waybar/scripts/tooltip_wall.sh",
+    "return-type": "json",
+    "tooltip": true,
+    "on-click": "bash $HOME/.config/waybar/scripts/wallchange.sh",
+},
+
+
+//天気予報
+"custom/weather": {
+    "exec": "$HOME/.config/waybar/scripts/get_weather.sh",
+    "on-click": "bash $HOME/.config/waybar/scripts/get_weather_change.sh",
+    "on-click-right": "killall zenity",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "interval": 3600
+},
+
+
+//カラーピッカー
+"custom/hyprpicker": {
+    "exec": "$HOME/.config/waybar/scripts/tooltip_picker.sh",
+    "return-type": "json",
+    "format": " {} ",
+    "tooltip": true,
+    "on-click": "sleep 1 && hyprpicker -a -f hex",
+    "on-click-right": "sleep 1 && hyprpicker -a -f rgb",
+    "on-click-middle": "display $HOME/.config/waybar/scripts/ansi256.png",
+},
+  }
+}
