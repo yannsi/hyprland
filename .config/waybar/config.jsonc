@@ -6,7 +6,7 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": ["custom/launcher", "custom/terminator", "custom/folder", "custom/firefox", "hyprland/workspaces", "custom/radio", "custom/youtube", "custom/media"],
+    "modules-left": ["custom/launcher", "custom/kitty", "custom/folder", "custom/firefox", "hyprland/workspaces", "custom/radio", "custom/youtube", "custom/media"],
     "modules-center": ["custom/hyprpicker", "custom/flameshot", "custom/wallpaper", "custom/help"],
     "modules-right": ["custom/trans", "custom/icon", "tray", "wireplumber", "network", "custom/weather", "clock", "custom/logout"],
     
@@ -71,7 +71,7 @@
     "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
     "tooltip-format-ethernet": "{ifname}  ",
     "tooltip-format-disconnected": "Disconnected",
-    "on-click": "terminator -e nmtui-connect",
+    "on-click": "kitty nmtui-connect",
     "on-click-right": "killall nmtui-connect",
     "on-click-middle": "bash $HOME/.config/waybar/scripts/server2.sh",
     "max-length": 50
@@ -92,7 +92,7 @@
 	"format-icons": ["󰕿", "󰖀", "󰕾"], 
        // "on-click": "bash $HOME/.config/waybar/scripts/nizyuukidou.sh",
         "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && sleep 1",
-        "on-click-right": "terminator -fe alsamixer",
+        "on-click-right": "kitty alsamixer",
         "max-volume": 150,
         "scroll-step": 0.7,
         "tooltip": true,
@@ -124,7 +124,7 @@
     "max-length":70,
     "exec": "playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}}  {{markup_escape(title)}}\", \"tooltip\": \"{{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
     "on-click": "playerctl play-pause",
-    "on-click-middle": "terminator -e cava",
+    "on-click-middle": "kitty cava",
     "on-click-right": "playerctl stop"
 },
 
@@ -193,13 +193,13 @@
 },
 
 
-//terminator(シェル)
-"custom/terminator": {
+//kitty(ターミナルエミュレータ)
+"custom/kitty": {
     "format": "    ",
-    "exec": "echo -e '{\"tooltip\": \"ターミナル(terminator)\"}'",
+    "exec": "echo -e '{\"tooltip\": \"ターミナル(kitty)\"}'",
     "return-type": "json",
     "tooltip": true,
-    "on-click": "terminator",
+    "on-click": "kitty",
 },
 
 
@@ -243,7 +243,7 @@
     "exec": "echo -e '{\"tooltip\": \"左クリック：ショートカットキーヘル | 右クリック：waybarヘルプ\"}'",
     "return-type": "json",
     "tooltip": true,
-    "on-click": "terminator -e 'gum pager --border=none < $HOME/.config/hypr/help.txt'",
+    "on-click": "terminator -e 'gum pager --border=none < ~/.config/hypr/help.txt'",
     "on-click-right": "evince  $HOME/.config/waybar/scripts/waybarsetumei.pdf",
 },
 
