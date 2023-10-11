@@ -9,12 +9,11 @@ fi
 wall=$(zenity --file-selection --filename="$HOME/" --text="壁紙を選んでください")
 
 if [ -n "$wall" ]; then
- swaybg -i "$wall"
  echo '#!/bin/bash' > $HOME/.config/waybar/scripts/wallpaper
  echo "swaybg -i '"$wall"'" >> $HOME/.config/waybar/scripts/wallpaper
+ killall swaybg
+ swaybg -i "$wall" & exit 0
 
 else
  exit 1
 fi
-
-exit 0
