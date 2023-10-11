@@ -6,6 +6,8 @@
 
 - adapta-gtk-theme
 - alsa-utils
+- asciiquarium
+- cmatrix
 - evince
 - fcitx5-configtool
 - fcitx5-gtk
