@@ -14,10 +14,6 @@ Happy_Hits（ハッピーミュージック） https://play.antenne.de/happy-hit
 Lovesongs（ラブソング） https://play.antenne.de/lovesongs.m3u
 Party_Hits（パーティーミュージック） https://play.antenne.de/party-hits.m3u
 Top_40（ランキング・トップ40） https://play.antenne.de/top-40.m3u
-AFN（基地放送） https://playerservices.streamtheworld.com/pls/AFNP_OKNAAC.pls
-RBC（RBC_iラジオ） https://radiko.jp/#!/live/RBC
-ROK（ラジオ沖縄） https://radiko.jp/#!/live/ROK
-FM_OKINAWA（FM沖縄"ブラウザが開きます"） https://radiko.jp/#!/live/FM_OKINAWA
 NHK第１ https://radio-stream.nhk.jp/hls/live/2023541/nhkradirulkr1/master.m3u8
 NHK第２ https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8
 NHK_FM https://radio-stream.nhk.jp/hls/live/2023542/nhkradirulkfm/master.m3u8
