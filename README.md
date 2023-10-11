@@ -50,9 +50,6 @@
 - zenity
 
 
-
-
-
 ### pacman -Qqem (AUR)
 
 - cava
@@ -64,6 +61,9 @@
 - otf-symbola
 - ttf-symbola
 
+- rofi-power-menu  （スクリプトを実行するだけでインストールはしない）
+
+
 ### pipx install
 - yewtube
-  
+
