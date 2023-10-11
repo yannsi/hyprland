@@ -124,7 +124,7 @@
     "max-length":70,
     "exec": "playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}}  {{markup_escape(title)}}\", \"tooltip\": \"{{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
     "on-click": "playerctl play-pause",
-    "on-click-middle": "terminator -e cava",
+    "on-click-middle": "kitty -e cava",
     "on-click-right": "playerctl stop"
 },
 
