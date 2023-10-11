@@ -244,7 +244,7 @@
     "return-type": "json",
     "tooltip": true,
     "on-click": "terminator -e 'gum pager --border=none < ~/.config/hypr/help.txt'",
-    "on-click-right": "evince  $HOME/.config/waybar/scripts/waybarsetumei.pdf",
+    "on-click-right": "xdg-open $HOME/.config/waybar/scripts/waybarsetumei.pdf",
 },
 
 
