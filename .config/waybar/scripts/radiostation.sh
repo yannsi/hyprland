@@ -8,8 +8,6 @@ radio=$(zenity --list --title="Radio Station" --text="チャンネルを選択\n
 ###################################
 if [ "$radio" = "https://radiko.jp/#!/live/RN2" ]; then
 streamlink -p mpv 'https://radiko.jp/#!/live/RN2' best
-elif [ "$radio" = "https://radiko.jp/#!/live/FM_OKINAWA" ]; then
-firefox --new-window 'https://radiko.jp/#!/live/FM_OKINAWA'
 else
 mpv "$radio"
 fi
