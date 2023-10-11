@@ -1,4 +1,4 @@
-# hyprland
+# my hyprland
 
 ![simple](simple.png)
 
