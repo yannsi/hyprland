@@ -1,5 +1,7 @@
 # hyprland
 
+![simple](simple.png)
+
 ![my hyprland](myhyprland.png)
 
 ### pacman -Qqen
