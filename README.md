@@ -67,7 +67,7 @@
 ### pipx install
 - yewtube
 ---
-
+![unixporn](unixporn.png)
 
 [waybar 使い方](.config/waybar/scripts/waybarsetumei.pdf)  ダウンロードしてブラウザ等で閲覧
 
