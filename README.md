@@ -66,7 +66,8 @@
 
 ### pipx install
 - yewtube
+---
 
 ![waybar](https://github.com/yannsi/hyprland/assets/64046112/9af3c7ca-3959-4c03-b064-85ce5b2bc231)
-[waybar 使い方](.config/waybar/scripts/waybarsetumei.pdf)
+[waybar 使い方](.config/waybar/scripts/waybarsetumei.pdf)  ダウンロードしてブラウザ等で閲覧
 
