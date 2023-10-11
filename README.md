@@ -1,3 +1,3 @@
 # hyprland
 
-![my hyprland]("myhyprland.png")
+![my hyprland](myhyprland.png)
