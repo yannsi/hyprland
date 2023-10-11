@@ -1,43 +1,53 @@
 #キーボードショートカットキー
+※ 設定ファイルは $HOME/.config/hypr/hyprland.conf です
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+（windowsマーク →　　SUPERキーと言われています）（Mac →　⌘　commandキーと言われています）
 
-windowsマーク + Q  terminator
-windowsマーク + C killactive 
-windowsマーク + M exit 
-windowsマーク + E  pcmanfm
-windowsマーク + V togglefloating 
-windowsマーク + R  rofi -show drun
-windowsマーク + P pseudo # dwindle
-windowsマーク + J togglesplit # dwindle
-windowsマーク + F  firefox
-windowsマーク + Z  waybar
-windowsマーク + SHIFT Z  killall waybar
-windowsマーク + Y  terminator -e "$HOME/.local/bin/yt"
-windowsマーク + W  terminator -e nmtui-connect
-windowsマーク + A  terminator -e alsamixer
-Ctrl Alt F  flameshot gui
-Ctrl Alt V  terminator -e cava
+windowsマーク + Q          （terminator　シェルを開く）
+windowsマーク + C          （フォーカスされているウィンドウを閉じる）
+windowsマーク + M          （ログアウト）
+windowsマーク + E          （pcmanfm　ファイラー）
+windowsマーク + V          （ウィンドウが横に並ぶ）
+windowsマーク + R          （アプリランチャーを開く）
+windowsマーク + P          （ウィンドウが少し小さくなる）
+windowsマーク + J          （ウィンドウが縦に並ぶ）
+windowsマーク + F          （firefoxブラウザを開く）
+windowsマーク + Y          （youtube検索アプリを開く）
+windowsマーク + W          （ネットワーク設定アプリを開く）
+windowsマーク + A          （音量調節アプリが開く）
+windowsマーク + Z          （デスクトップ上部のバーを開く）
+windowsマーク + SHIFT Z    （デスクトップ上部のバーを閉じる）
+Ctrl + Alt + F           　（スクリーンショットアプリを開く）
+Ctrl + Alt + V           　（オーディオビジュアライザーを開く）
+
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 # ボリューム
+
 キーボードのボリュームプラスボタン　（ボリューム大）
-キーボードのボリュームマイナスボタン　（ボリューム小）
+キーボードのボリュームマイナスボタン（ボリューム小）
+
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 # スクリーンショット
+
 windowsマーク + PRINT (ウィンドウのスクリーンショット)
-PRINT (モニター全画面のスクリーンショット)
-SHIFT + PRINT (選択範囲のスクリーンショット)
+PRINT               　(モニター全画面のスクリーンショット)
+SHIFT + PRINT 　　　　(選択範囲のスクリーンショット)
 
 #:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 # windowsマーク + 矢印キーでフォーカスを移動
-windowsマーク + left 
-windowsマーク + right 
-windowsマーク + up
-windowsマーク + down 
+
+windowsマーク + ←
+windowsマーク + → 
+windowsマーク + ↑
+windowsマーク + ↓ 
 
 #:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 # windowsマーク + [0-9]でワークスペースを切り替える
+
 windowsマーク + 1 （ワークスペース切替 1）
 windowsマーク + 2 （ワークスペース切替 2）
 windowsマーク + 3 （ワークスペース切替 3）
@@ -52,6 +62,7 @@ windowsマーク + 0 （ワークスペース切替 10）
 #:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 # windowsマーク + SHIFT + [0-9] でアクティブウィンドウをワークスペースに移動する
+
 windowsマーク + SHIFT 1 （ワークスペース1へ移動）
 windowsマーク + SHIFT 2 （ワークスペース2へ移動）
 windowsマーク + SHIFT 3 （ワークスペース3へ移動）
@@ -65,23 +76,20 @@ windowsマーク + SHIFT 0 （ワークスペース10へ移動）
 
 #:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+#マウススクロール
+
 windowsマーク + マウススクロールダウン （他のワークスペースに進む）
 windowsマーク + マウススクロールアップ （他のワークスペースに戻る）
 
-#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-# ウィンドウ移動・リサイズ
+#マウスドラッグ
+
 windowsマーク + マウスの左ドラッグ （ウィンドウ移動）
 windowsマーク + マウスの右ドラッグ （ウィンドウサイズ変更）
 
 #:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-### waybar（画面上部にあるバー）からもアプリの起動や設定が行える
-
-waybarの設定ファイルの場所
-$HOME/.config/waybar/config.jsonc
-
-waybarスタイル設定の場所
-＄HOME/.config/waybar/style.css
-
+※ waybar（画面上部にあるバー）のアイコンをクリックすることでアプリの起動や設定が行えます
+※ マウスの　左・中・右　クリックで起動するコマンドを設定しています
+※ waybarの設定ファイルは　$HOME/.config/waybar/config.jsonc です
 
