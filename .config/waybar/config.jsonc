@@ -7,7 +7,7 @@
     "margin-left": 0,
     "margin-right": 0,
     "modules-left": ["custom/launcher", "custom/terminator", "custom/folder", "custom/firefox", "hyprland/workspaces", "custom/radio", "custom/youtube", "custom/media"],
-    "modules-center": ["custom/hyprpicker", "custom/flameshot", "custom/wallpaper"],
+    "modules-center": ["custom/hyprpicker", "custom/flameshot", "custom/wallpaper", "custom/help"],
     "modules-right": ["custom/trans", "custom/icon", "tray", "wireplumber", "network", "custom/weather", "clock", "custom/logout"],
     
     
@@ -90,7 +90,7 @@
 	"format": " {icon}{volume}% ",
         "format-muted": " 󰝟 ",
 	"format-icons": ["󰕿", "󰖀", "󰕾"], 
-        "on-click": "bash $HOME/.config/waybar/scripts/nizyuukidou.sh",
+       // "on-click": "bash $HOME/.config/waybar/scripts/nizyuukidou.sh",
         "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && sleep 1",
         "on-click-right": "terminator -fe alsamixer",
         "max-volume": 150,
@@ -108,7 +108,7 @@
     "tooltip": "true",
     "on-click": "rofi -show drun",
     "on-click-right": "killall rofi",  
-    "on-click-middle": "rofi -show run"
+    "on-click-middle": "rofimoji"
 },
 
 
@@ -148,7 +148,7 @@
     "tooltip": "true",
     "on-click": "firefox --new-window https://www.youtube.com/",
     "on-click-right": "bash $HOME/.config/waybar/scripts/mmv0.sh",
-    "on-click-middle": "killall mpv",
+    //"on-click-middle": "killall mpv",
 },
 
 
@@ -237,11 +237,22 @@
 },
 
 
+//使い方ヘルプ
+"custom/help": {
+    "format": "  ",
+    "exec": "echo -e '{\"tooltip\": \"左クリック：ショートカットキーヘル | 右クリック：waybarヘルプ\"}'",
+    "return-type": "json",
+    "tooltip": true,
+    "on-click": "terminator -e 'gum pager --border=none < $HOME/.config/hypr/help.txt'",
+    "on-click-right": "evince  $HOME/.config/waybar/scripts/waybarsetumei.pdf",
+},
+
+
 //天気予報
 "custom/weather": {
     "exec": "$HOME/.config/waybar/scripts/get_weather.sh",
     "on-click": "bash $HOME/.config/waybar/scripts/get_weather_change.sh",
-    "on-click-right": "killall zenity",
+    //"on-click-right": "killall zenity",
     "return-type": "json",
     "format": "{}",
     "tooltip": true,
