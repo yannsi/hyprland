@@ -200,6 +200,7 @@
     "return-type": "json",
     "tooltip": true,
     "on-click": "terminator",
+    "on-click-right": "kitty",
 },
 
 
@@ -240,11 +241,12 @@
 //使い方ヘルプ
 "custom/help": {
     "format": "  ",
-    "exec": "echo -e '{\"tooltip\": \"左クリック：ショートカットキーヘル | 右クリック：waybarヘルプ\"}'",
+    "exec": "echo -e '{\"tooltip\": \"左クリック：ショートカットキーヘルプ | 右クリック：waybarヘルプ\"}'",
     "return-type": "json",
     "tooltip": true,
     "on-click": "terminator -e 'gum pager --border=none < ~/.config/hypr/help.txt'",
     "on-click-right": "xdg-open $HOME/.config/waybar/scripts/waybarsetumei.pdf",
+    "on-click-middle": "xdg-open https://github.com/yannsi/hyprland",
 },
 
 
