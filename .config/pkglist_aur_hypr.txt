@@ -1,0 +1,8 @@
+boxes
+cava
+cbonsai-git
+flameshot-git
+hyprpicker-git
+hyprshot
+otf-symbola
+ttf-symbola
