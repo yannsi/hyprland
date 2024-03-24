@@ -2,7 +2,10 @@
 
 git clone https://github.com/yannsi/hyprland.git
 cd $HOME/hyprland/.config
-pacman -S --needed - < pkglist_pacman_hypr.txt
+
+printf "password: "
+read password
+echo "$password" | sudo -S pacman -S --needed - < pkglist_pacman_hypr.txt
 cp -r cava hypr waybar starship.toml $HOME/.config
 cd
 
