@@ -1,8 +1,4 @@
 #!/bin/bash
 
 git clone https://github.com/yannsi/hyprland.git
-cd $HOME/hyprland/.config
-printf "password: "
-read password
-echo "$password" | sudo -S pacman -S --needed - < pkglist_pacman_hypr.txt && cp -r cava hypr waybar starship.toml $HOME/.config && cd && git clone https://aur.archlinux.org/cava.git && cd $HOME/cava/ && makepkg -si && cd && rm -rf cava && echo "設定が完了しました。再起動してください。"
-
+echo -e "\n次のコマンドを実行してください。\n\ncd $HOME/hyprland/.config\nsudo -S pacman -S --needed - < pkglist_pacman_hypr.txt\ncp -r cava hypr waybar starship.toml $HOME/.config\ncp .kannsuu.txt $HOME\nstarship preset tokyo-night -o ~/.config/starship.toml\ncd && git clone https://aur.archlinux.org/cava.git\ncd $HOME/cava/ && makepkg -si\ncd && rm -rf cava\n"
