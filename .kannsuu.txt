@@ -382,3 +382,7 @@ yannsi_git_hyprland() {
 git clone https://github.com/yannsi/hyprland.git
 }
 ######################################################
+kktxt() {
+curl https://raw.githubusercontent.com/yannsi/hyprland/main/.kannsuu.txt
+}
+######################################################
