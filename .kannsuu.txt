@@ -1,0 +1,384 @@
+afn() { mpv --playlist=http://playerservices.streamtheworld.com/pls/AFNP_OKNAAC.pls; }
+
+rock() { mpv --playlist=http://play.rockantenne.de/rockantenne.m3u; }
+
+antennebayern() { mpv --playlist=http://play.antenne.de/antenne.m3u; }
+
+80shits() { mpv --playlist=https://play.antenne.de/80er-kulthits.m3u; }
+
+oldies() { mpv --playlist=http://play.oldie-antenne.de/oldie-antenne.m3u; }
+
+coffeemusic() { mpv --playlist=https://play.antenne.de/coffee.m3u; }
+
+gratesthits() { mpv --playlist=https://play.antenne.de/greatest-hits.m3u; }
+
+smoothjazz() { mpv https://smoothjazz.cdnstream1.com/2585_128.mp3; }
+smoothjazz_lounge() { mpv https://smoothjazz.cdnstream1.com/2586_128.mp3; }
+
+classicrock() { mpv --playlist=https://play.antenne.de/classic-rock-live.m3u; }
+
+
+neon() {
+bgd=${5:-black}
+font=${4:-IPAゴシック}
+col=${3:-DodgerBlue}
+gvt=${6:-center}
+convert -size 650x1146 -gravity "$gvt" -fill "$col" -background "$bgd" -font "$font" -pointsize 72 label:"$1" -bordercolor black -border 30x30 \( +clone -blur 0x25 -level 0%,50% \) -compose screen -composite "$2"
+}
+
+
+sketch() { magick "$1" -colorspace gray \
+          \( +clone -tile pencil_tile.gif -draw "color 0,0 reset" \
+             +clone +swap -compose color_dodge -composite \) \
+          -fx 'u*.2+v*.8' "$2"; }
+          
+aoyanagi() { convert -fill black -transparent white -pointsize 85 -gravity center -font "/usr/local/share/fonts/aoyagireisyosimo_otf_2_01.otf" label:"$1" "$2"; }   
+          
+
+neuropol() { convert -fill black -transparent white -pointsize 85 -gravity center -font "/usr/share/fonts/neuropol.otf" label:"$1" "$2"; }
+
+
+lightname=$(xrandr | grep -w connected | cut -f '1' -d ' ')
+backlight() { xrandr --output $lightname --brightness $1; }
+# xrandr | grep -w connected | cut -f '1' -d ' '  (outputname調べ方)
+
+complete -cf sudo
+
+
+export VIDEO_FORMAT=NTSC
+
+
+tenki() {
+location=${1:-真嘉比}
+curl ja.wttr.in/$location
+}
+
+
+export PS1='[😀 \s \W ] $ '
+
+
+numbers4() { echo $(($RANDOM%+9999)); }
+
+
+saikoro() { echo $(($RANDOM%6+1)) | figlet ; }
+
+
+vnc() {
+x11vnc -many -bg -display :0 -rfbauth $HOME/.x11vnc/passwd
+echo -e "\n\e[94mvncサーバーを起動しました\e[0m\n"
+}
+
+
+#eval "$(gh completion -s bash)"
+
+
+###################################################
+function mma() {
+	yt-dlp -f ba ytsearch:"$*" --no-warnings -g | xargs mpv 
+}
+
+function mmv() {
+        yt-dlp -f b ytsearch:"$*" --no-warnings -g | xargs mpv
+}
+
+
+function mmurl() {
+        yt-dlp -f b "$*" --no-warnings -g | xargs mpv
+}
+
+function mmid() {
+        yt-dlp -f b https://www.youtube.com/watch?v="$*" --no-warnings -g | xargs mpv
+}
+
+function mmsearch() {
+	yt-dlp ytsearch10:"$*" --get-id --get-title --no-warnings
+}
+
+ytaudio() {
+	mpv --no-video "$1"
+}
+##################################################
+#alias serveron='python3 -m http.server 7777'
+##################################################
+server() {
+clear
+
+pass=$(gum input --header "共有するフォルダのパスを入力"  --header.foreground="206" --placeholder " 例：/home/sk/Videos") || exit 1
+
+cd "$pass" || return 1
+
+inet=$(ip addr show wlan0 | grep "inet ")
+
+ipa=$(echo "${inet#*inet }")
+ipb=$(echo "${ipa%%/*}")
+
+sleep 3 && qrencode -t UTF8 http://$ipb:7777/
+echo "サーバーへのアドレス  http://$ipb:7777/"
+echo "QRコードを読み取りスマホ等からアクセス"
+echo -e "\n"
+tput setaf 3 && echo -e "サーバーを終了するには\nCtrl + C で終了"
+tput sgr0
+echo -e "\n"
+
+python3 -m http.server 7777 ; cd
+}
+###################################################
+
+#export DIALOGRC=/home/kamisato/.dlog
+####################################################
+#streamlink
+nikkei2() { streamlink -p mpv 'https://radiko.jp/#!/live/RN2' best; }
+rbc() { streamlink -p mpv 'https://radiko.jp/#!/live/RBC' best; }
+rok() { streamlink -p mpv 'https://radiko.jp/#!/live/ROK' best; }
+nhk_fm() { streamlink -p mpv 'https://radiko.jp/#!/live/JOAK-FM' best; }
+nhk1() { streamlink -p mpv 'https://radiko.jp/#!/live/JOLK' best; }
+abema1() { streamlink -p mpv https://abema.tv/now-on-air/world-sports-1 best; }
+abema2() { streamlink -p mpv https://abema.tv/now-on-air/world-sports-2 best; }
+
+####################################################
+note () {
+    # if file doesn't exist, create it
+    if [[ ! -f $HOME/.notes ]]; then
+        touch "$HOME/.notes"
+    fi
+
+    if ! (($#)); then
+        # no arguments, print file
+        cat "$HOME/.notes"
+    elif [[ "$1" == "-c" ]]; then
+        # clear file
+        printf "%s" > "$HOME/.notes"
+    else
+        # add all arguments to file
+        printf "%s\n" "$*" >> "$HOME/.notes"
+    fi
+}
+###################################################
+
+syouhizei10() {
+zzz=$(python -c "print(round($1*1.1))")
+jjj=$(python -c "print(round($1*0.1))")
+echo -e "税込み $zzz 円 | 消費税 $jjj 円" | cowthink | lolcat
+}
+
+syouhizei8() {
+zzz=$(python -c "print(round($1*1.08))")
+jjj=$(python -c "print(round($1*0.08))")
+echo -e "税込み $zzz 円 | 消費税 $jjj 円" | cowthink | lolcat
+}
+
+#################################################
+iro() { convert -fuzz 1% -fill "$2" -opaque "$1" "$3" "$4"; }
+
+##################################################
+doremi() {
+long=${2:-1}
+c2=$(($1+1))
+for n in C$1 D$1 E$1 F$1 G$1 A$1 B$1 C"$c2"; do play -n synth "$long" pluck $n ; done
+
+sox -n file1.wav synth "$long" pluck C$1
+sox -n file2.wav synth "$long" pluck D$1
+sox -n file3.wav synth "$long" pluck E$1
+sox -n file4.wav synth "$long" pluck F$1
+sox -n file5.wav synth "$long" pluck G$1
+sox -n file6.wav synth "$long" pluck A$1
+sox -n file7.wav synth "$long" pluck B$1
+sox -n file8.wav synth "$long" pluck C"$c2"
+sox file*.wav drm"$(date +%Y-%m-%dT%H:%M:%S)".wav
+rm -rf file*wav
+}
+###################################################
+housou() {
+play -n synth -j 3 sin %3 sin %-2 sin %-5 sin %-9 \
+                   sin %-14 sin %-21 fade h .01 2 1.5 delay \
+                   1.3 1 .76 .54 .27 remix - fade h 0 2.7 2.5 norm -1
+}
+####################################################
+zyararan() {
+play -n synth pl G2 pl B2 pl D3 pl G3 pl D4 pl G4 \
+delay 0 .05 .1 .15 .2 .25 remix - fade 0 4 .1 norm -1
+}
+###################################################
+robot() {
+play -n synth 0.5 sine 200-500 synth 0.5 sine fmod 700-100
+}
+###################################################
+cheat() { curl cheat.sh/"$1"; }
+####################################################
+export PATH="$HOME/go/bin:$PATH"
+export DRAW_FILE=$HOME/draw.txt
+###################################################
+export PATH=$PATH:$HOME/.local/bin
+####################################################
+ansi256() {
+for fgbg in 38 48 ; do # Foreground / Background
+    for color in {0..255} ; do # Colors
+        # Display the color
+        printf "\e[${fgbg};5;%sm  %3s  \e[0m" $color $color
+        # Display 6 colors per lines
+        if [ $((($color + 1) % 6)) == 4 ] ; then
+            echo # New line
+        fi
+    done
+    echo # New line
+done
+}
+####################################################
+zimaku2() {
+num=$(echo $RANDOM)
+clear
+
+tput setaf 5 && echo -e "動画に字幕を追加します\n動画ファイルを選択してください"
+tput sgr0
+
+v=$(gum file) && clear || exit 1
+tput setaf 5 && echo -e "1つ目の字幕ファイルを選択してください"
+tput sgr0
+
+s1=$(gum file) && clear || exit 1
+tput setaf 5 && echo -e "2つ目の字幕ファイルを選択してください"
+tput sgr0
+
+s2=$(gum file) ; clear
+ffmpeg -i "$v" -i "$s1" -i "$s2" -map 0:v -map 0:a -map 1 -map 2 -metadata:s:s:0 language=sub1 -metadata:s:s:1 language=sub2 -c copy （字幕2カ国_$num）"$(basename "$v")" || { echo -e "\n保存できませんでした\n" ; return 1; }
+
+tput setaf 6 && echo -e "\n保存完了\nファイル名 → （字幕2カ国_$num）"$(basename "$v")"\n"
+tput sgr0
+}
+#############################################################
+zimaku1() {
+clear
+num=$(echo $RANDOM)
+
+tput setaf 5 && echo -e "動画に字幕を追加します\n動画ファイルを選択してください"
+tput sgr0
+v=$(gum file) && clear || exit 1
+
+tput setaf 5 && echo -e "字幕ファイルを選択してください"
+tput sgr0
+s1=$(gum file) && clear || exit 1
+
+ffmpeg -i "$v" -i "$s1" -map 0:v -map 0:a -map 1 -metadata:s:s:0 language=sub1 -c copy （字幕1カ国_$num）"$(basename "$v")" || { echo -e "	\n保存できませんでした\n" ; return 1; }
+
+tput setaf 6 && echo -e "\n保存完了\nファイル名 → （字幕1カ国_$num）"$(basename "$v")"\n"
+tput sgr0
+}
+
+#######################################################
+zimakujpa() { firefox https://translatesubtitles.co; }
+######################################################
+slack-bot() {
+clear
+WEBHOOK_URL="https://hooks.slack.com/services/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"
+MESSAGE="$(gum write --header="slack botへメッセージ (CTRL+D で送信)")" && : || exit 1
+icv=$(echo "$MESSAGE" | iconv -t UTF-8)
+PAYLOAD="payload={\"attachments\": [{ \"color\": \"#ff00ff\", \"text\": \"$icv\"}] }"
+curl -XPOST --data-urlencode "${PAYLOAD}" \
+ "$WEBHOOK_URL" > /dev/null && tput setaf 6 && echo -e "\n 送信完了\n" ; tput sgr0
+}
+#####################################################
+slack-ugokiari() {
+clear
+WEBHOOK_URL="https://hooks.slack.com/services/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"
+MESSAGE="$(gum write --header="slack 動きありへメッセージ (CTRL+D で送信)")" && : || exit 1
+icv=$(echo "$MESSAGE" | iconv -t UTF-8)
+PAYLOAD="payload={\"attachments\": [{ \"color\": \"#7fff00\", \"text\": \"$icv\"}] }"
+curl -XPOST --data-urlencode "${PAYLOAD}" \
+ "$WEBHOOK_URL" > /dev/null && tput setaf 6 && echo -e "\n 送信完了\n" ; tput sgr0
+}
+######################################################
+slack-zibun() {
+clear
+WEBHOOK_URL="https://hooks.slack.com/services/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"
+MESSAGE="$(gum write --header="slack 自分へメッセージ (Ctrl + D で送信)")" && : || exit 1
+icv=$(echo "$MESSAGE" | iconv -t UTF-8)
+PAYLOAD="payload={\"attachments\": [{ \"color\": \"#1e90ff\", \"text\": \"$icv\"}] }"
+curl -XPOST --data-urlencode "${PAYLOAD}" \
+ "$WEBHOOK_URL" > /dev/null && tput setaf 6 && echo -e "\n 送信完了\n" ; tput sgr0 
+}
+######################################################
+discord-hook() {
+clear
+
+# Webhook URL
+WEBHOOK_URL="https://discord.com/api/webhooks/1164700832378404944/XlTPnkC46BiAM8-h1G9wLtBM6M6Y_InujF_Rm-WxxIYOkYwUUNkH5guXfBaMd4znMDtk"
+
+# メッセージコンテンツ
+MESSAGE="$(gum input --header="discord 一般へメッセージ (Enter で送信)(改行は \r を入力)")" || exit 1
+
+# リクエストボディ
+REQUEST_BODY="{\"content\":\"$MESSAGE\"}"
+
+# POSTリクエストを送信
+curl -X POST -H "Content-Type: application/json" -d "$REQUEST_BODY" "$WEBHOOK_URL"
+}
+#####################################################
+discord-file() {
+clear
+
+# Webhook URL
+WEBHOOK_URL="https://discord.com/api/webhooks/1164700832378404944/XlTPnkC46BiAM8-h1G9wLtBM6M6Y_InujF_Rm-WxxIYOkYwUUNkH5guXfBaMd4znMDtk"
+
+tput setaf 5 && echo -e "discordへファイルを送信"
+tput sgr0
+
+FILE="$(gum file -a)" || exit 1
+
+$HOME/.local/bin/http -f $WEBHOOK_URL \
+payload_json='{"username": "sk", "content": "'"$*"'"}' \
+file1@"$FILE" > /dev/null && tput setaf 6 && echo -e "\n 送信完了 ----> "$FILE"\n" ; tput sgr0 
+}
+######################################################
+discord-msg() {
+clear
+
+# Webhook URL
+WEBHOOK_URL="https://discord.com/api/webhooks/1164700832378404944/XlTPnkC46BiAM8-h1G9wLtBM6M6Y_InujF_Rm-WxxIYOkYwUUNkH5guXfBaMd4znMDtk"
+
+# メッセージ
+MESSAGE="$(gum input --header="discord 一般へメッセージ (Enter で送信)(改行は \r を入力)")" || exit 1
+
+echo '{"username": "sk", "content": "'"$MESSAGE"'"}' | $HOME/.local/bin/http $WEBHOOK_URL > /dev/null && tput setaf 6 && echo -e "\n 送信完了\n" ; tput sgr0
+}
+#####################################################
+qr-print() {
+qr=$(gum input --header=画面にQRコードを表示)
+qrencode -t UTF8 "$qr"
+}
+#######################################################
+mqttsub() {
+mosquitto_sub -h broker.emqx.io -t 'ugansanume/#' -v
+}
+########################################################
+mqttpub() {
+mosquitto_pub -h broker.emqx.io -t 'ugansanume/' -m "$*"
+}
+########################################################
+keisanki() {
+    echo "scale=3;$@" | bc -l | cowsay -f cower | lolcat
+}
+#######################################################
+wordpv() {
+echo "$*" | pv -qL 10
+}
+######################################################
+kanban() {
+clear && echo -e "\e[5m$(echo "$*" | boxes -d parchment -a c) \e[25m" | lolcat --freq 0.5 ; sleep 'inf'
+}
+######################################################
+kanban_stop() {
+clear && echo "$*" | boxes -d parchment -a c | lolcat --freq 0.5 ; sleep 'inf'
+}
+######################################################
+daunrood() {
+yt-dlp --external-downloader aria2c --external-downloader-args '-c -j 3 -x 3 -s 3 -k 1M' $1
+}
+######################################################
+outi() {
+echo -e "郵便番号：902-0068\n住所：沖縄県那覇市真嘉比2−5−18\n伸也電話：090-1089-9711\nともみ電話：090-7446-4896\n凌羽電話：080-6490-5442\n大悟電話：090-3794-1055"
+}
+######################################################
+yannsi_git_hyprland() {
+git clone https://github.com/yannsi/hyprland.git
+}
+######################################################
