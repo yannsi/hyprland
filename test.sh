@@ -38,6 +38,16 @@ cd $HOME/hyprshot && yes | makepkg -si &
 wait
 cd && rm -rf hyprshot
 
+git clone https://aur.archlinux.org/cbonsai-git.git
+cd $HOME/cbonsai-git && yes | makepkg -si &
+wait
+cd && rm -rf cbonsai-git
+
+git clone https://aur.archlinux.org/boxes.git
+cd $HOME/boxes && yes | makepkg -si &
+wait
+cd && rm -rf boxes
+
 #echo -e "GTK_IM_MODULE=fcitx\nQT_IM_MODULE=fcitx\nXMODIFIERS=@im=fcitx" >> /etc/environment
 
 echo ". .kannsuu.txt" >> .bashrc
