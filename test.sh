@@ -7,7 +7,8 @@ sudo chmod +x $HOME/hyprland/test.sh
 
 cd $HOME/hyprland/.config
 
-sudo pacman -S --needed - < pkglist_pacman_hypr.txt
+sudo pacman -S --needed - < pkglist_pacman_hypr.txt &
+wait
 
 cp -r hypr waybar starship.toml $HOME/.config
 
@@ -23,22 +24,26 @@ cd $HOME/hyprland/.config
 cp -r cava $HOME/.config && cd
 
 git clone https://aur.archlinux.org/flameshot-git.git
-cd $HOME/flameshot-git/ && makepkg -si
+cd $HOME/flameshot-git/ && yes | makepkg -si &
+wait
 cd && rm -rf flameshot-git
 
 git clone https://aur.archlinux.org/hyprpicker-git.git
-cd $HOME/hyprpicker-git && makepkg -si
+cd $HOME/hyprpicker-git && yes | makepkg -si &
+wait
 cd && rm -rf hyprpicker-git
 
 git clone https://aur.archlinux.org/hyprshot.git
-cd $HOME/hyprshot && makepkg -si
+cd $HOME/hyprshot && yes | makepkg -si &
+wait
 cd && rm -rf hyprshot
 
 #echo -e "GTK_IM_MODULE=fcitx\nQT_IM_MODULE=fcitx\nXMODIFIERS=@im=fcitx" >> /etc/environment
 
 echo ". .kannsuu.txt" >> .bashrc
 
-pipx install yewtube
+pipx install yewtube &
+wait
 
 echo "終了しました。再起動してください。"
 
