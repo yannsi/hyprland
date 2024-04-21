@@ -4,7 +4,7 @@
 
 ![my hyprland](myhyprland.png)
 
-### pacman -Qqen
+### pacman -Qen
 
 - adapta-gtk-theme
 - alsa-utils
@@ -54,7 +54,7 @@
 - zenity
 
 
-### pacman -Qqem (AUR)
+### pacman -Qem (AUR)
 
 - cava
 - cbonsai-git
