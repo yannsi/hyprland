@@ -3,9 +3,8 @@ set -e
 
 
 git clone https://github.com/yannsi/hyprland.git
-
 echo -e "\nパッケージのインストールと設定を行います。\nパスワードを入力してください。\n"
-sudo chmod +x $HOME/hyprland/hyprlanddotfile.sh
+sudo chmod +x $HOME/hyprland/test.sh
 
 cd $HOME/hyprland/.config
 
