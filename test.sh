@@ -40,7 +40,7 @@ cd $HOME/hyprshot && makepkg -si
 wait
 cd && rm -rf hyprshot
 
-echo -e "GTK_IM_MODULE=fcitx\nQT_IM_MODULE=fcitx\nXMODIFIERS=@im=fcitx" >> /etc/environment
+#echo -e "GTK_IM_MODULE=fcitx\nQT_IM_MODULE=fcitx\nXMODIFIERS=@im=fcitx" >> /etc/environment
 
 echo ". .kannsuu.txt" >> .bashrc
 
