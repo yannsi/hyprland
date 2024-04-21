@@ -16,7 +16,7 @@ cd .. && cp .kannsuu.txt $HOME/
 starship preset tokyo-night -o ~/.config/starship.toml
 
 cd && git clone https://aur.archlinux.org/cava.git
-cd $HOME/cava/ && makepkg -si &
+cd $HOME/cava/ && yes | makepkg -si &
 wait
 cd && rm -rf cava
 cd $HOME/hyprland/.config
