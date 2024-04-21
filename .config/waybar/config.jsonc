@@ -8,7 +8,7 @@
     "margin-right": 0,
     "modules-left": ["custom/launcher", "custom/terminator", "custom/folder", "custom/firefox", "hyprland/workspaces", "custom/radio", "custom/youtube", "custom/media"],
     "modules-center": ["custom/hyprpicker", "custom/flameshot", "custom/wallpaper", "custom/help"],
-    "modules-right": ["custom/trans", "custom/icon", "tray", "wireplumber", "network", "custom/weather", "clock", "custom/logout"],
+    "modules-right": ["tray", "wireplumber", "network", "custom/weather", "clock", "custom/logout"],
     
     
 // Modules configuration
@@ -131,8 +131,8 @@
 
 //スクリーンショット
 "custom/flameshot": {
-	"exec": "$HOME/.config/waybar/scripts/tooltip_shot.sh",
-	"format": " {}  ",
+	"exec": "echo -e '{\"tooltip\": \"スクリーンショット\"}'",
+	"format": "   ",
 	"return-type": "json",
 	"tooltip": "true",
 	"on-click": "flameshot gui",
@@ -207,7 +207,7 @@
 //インターネットラジオ
 "custom/radio": {
     "format": "    ",
-    "exec": "$HOME/.config/waybar/scripts/tooltip_radio.sh",
+    "exec": "echo -e '{\"tooltip\": \"インターネットラジオ\"}'",
     "return-type": "json",
     "tooltip": true,
     "on-click": "mpv https://smoothjazz.cdnstream1.com/2585_128.mp3",
@@ -230,8 +230,8 @@
 
 //壁紙設定
 "custom/wallpaper": {
-    "format": " {} ",
-    "exec": "$HOME/.config/waybar/scripts/tooltip_wall.sh",
+    "format": "  ",
+    "exec": "echo -e '{\"tooltip\": \"壁紙設定\"}'",
     "return-type": "json",
     "tooltip": true,
     "on-click": "bash $HOME/.config/waybar/scripts/wallchange.sh",
@@ -240,7 +240,7 @@
 
 //使い方ヘルプ
 "custom/help": {
-    "format": "  ",
+    "format": " 　 ",
     "exec": "echo -e '{\"tooltip\": \"左クリック：ショートカットキーヘルプ | 右クリック：waybarヘルプ\"}'",
     "return-type": "json",
     "tooltip": true,
@@ -252,7 +252,7 @@
 
 //天気予報
 "custom/weather": {
-    "exec": "$HOME/.config/waybar/scripts/get_weather.sh",
+    "exec": "bash $HOME/.config/waybar/scripts/get_weather.sh",
     "on-click": "bash $HOME/.config/waybar/scripts/get_weather_change.sh",
     //"on-click-right": "killall zenity",
     "return-type": "json",
@@ -264,9 +264,9 @@
 
 //カラーピッカー
 "custom/hyprpicker": {
-    "exec": "$HOME/.config/waybar/scripts/tooltip_picker.sh",
+    "exec": "echo -e '{\"tooltip\": \"カラーピッカー\"}'",
     "return-type": "json",
-    "format": " {} ",
+    "format": " 󰈋 ",
     "tooltip": true,
     "on-click": "sleep 1 && hyprpicker -a -f hex",
     "on-click-right": "sleep 1 && hyprpicker -a -f rgb",
