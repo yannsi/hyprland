@@ -18,7 +18,6 @@ starship preset tokyo-night -o ~/.config/starship.toml
 
 cd && git clone https://aur.archlinux.org/cava.git
 cd $HOME/cava/ && makepkg -si
-
 cd && rm -rf cava
 cd $HOME/hyprland/.config
 cp -r cava $HOME/.config && cd
