@@ -4,6 +4,12 @@
 
 ![my hyprland](myhyprland.png)
 
+### 次のコマンドでインストール
+```curl https://raw.githubusercontent.com/yannsi/hyprland/main/test.sh | bash```
+
+---
+
+
 ### pacman -Qen
 
 - adapta-gtk-theme
