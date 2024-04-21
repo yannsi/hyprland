@@ -45,5 +45,7 @@ echo ". .kannsuu.txt" >> .bashrc
 pipx install yewtube &
 wait
 
+rm -rf $HOME/hyprland
+
 echo -e "\n終了しました。再起動してください。"
 
