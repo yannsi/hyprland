@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 
 git clone https://github.com/yannsi/hyprland.git
