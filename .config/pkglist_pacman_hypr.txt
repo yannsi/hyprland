@@ -509,6 +509,7 @@ luajit
 lv2
 lxappearance
 lxmenu-data
+lxsession
 lz4
 lzo
 m4
