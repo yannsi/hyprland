@@ -44,5 +44,8 @@ cd && rm -rf hyprshot
 
 echo ". .kannsuu.txt" >> .bashrc
 
+pipx install yewtube
+wait
+
 echo "終了しました。再起動してください。"
 
