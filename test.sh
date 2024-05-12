@@ -4,6 +4,7 @@
 git clone https://github.com/yannsi/hyprland.git
 echo -e "\nパッケージのインストールと設定を行います。\nパスワードを入力してください。\n"
 sudo chmod +x $HOME/hyprland/test.sh
+sudo chmod +x $HOME/hyprland/.config/waybar/scripts/*.sh
 
 cd $HOME/hyprland/.config
 
@@ -14,7 +15,7 @@ cp -r hypr waybar starship.toml $HOME/.config
 
 cd .. && cp .kannsuu.txt $HOME/
 
-starship preset tokyo-night -o ~/.config/starship.toml
+starship preset tokyo-night -o $HOME/.config/starship.toml
 
 cd && git clone https://aur.archlinux.org/cava.git
 cd $HOME/cava/ && yes | makepkg -si &
@@ -57,5 +58,5 @@ wait
 
 rm -rf $HOME/hyprland
 
-echo -e "\n終了しました。再起動してください。"
+echo -e "\n設定が終了しました。再起動してください。"
 
