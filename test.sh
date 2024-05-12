@@ -11,7 +11,7 @@ cd $HOME/hyprland/.config
 sudo pacman -S --needed - < pkglist_pacman_hypr.txt &
 wait
 
-cp -r hypr waybar starship.toml $HOME/.config
+cp -r hypr waybar starship.toml terminator $HOME/.config
 
 cd .. && cp .kannsuu.txt $HOME/
 
