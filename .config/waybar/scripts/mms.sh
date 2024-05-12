@@ -1,8 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 clear
 
-ipt=$(gum input --header="YouTubeを検索します(Ctrl + Cで終了)" --header.foreground="199" --placeholder=" 検索するフレーズを入力（曲名・歌手名　等）"
-)
+ipt=$(gum input --header="YouTubeを検索します(Ctrl + Cで終了)" --header.foreground="199" --placeholder="検索するフレーズを入力(曲名等)")
 
 if [ -z "$ipt" ]; then
 exit 0
