@@ -8,7 +8,7 @@
     "margin-right": 0,
     "modules-left": ["custom/launcher", "custom/terminator", "custom/folder", "custom/firefox", "hyprland/workspaces", "custom/radio", "custom/youtube", "custom/media"],
     "modules-center": ["custom/hyprpicker", "custom/flameshot", "custom/wallpaper", "custom/help"],
-    "modules-right": ["tray", "wireplumber", "network", "custom/weather", "clock", "custom/logout"],
+    "modules-right": ["tray", "wireplumber", "network", "custom/backlight", "custom/weather", "clock", "custom/logout"],
     
     
 // Modules configuration
@@ -124,7 +124,7 @@
     "max-length":70,
     "exec": "playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}}  {{markup_escape(title)}}\", \"tooltip\": \"{{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
     "on-click": "playerctl play-pause",
-    "on-click-middle": "kitty -e cava",
+    "on-click-middle": "terminator -e cava",
     "on-click-right": "playerctl stop"
 },
 
@@ -139,6 +139,16 @@
         //"on-click-right": "hyprshot -m output",
 },
 
+
+//バックライト
+"custom/backlight": {
+        "exec": "echo -e '{\"tooltip\": \"バックライト(左クリック：明るくなる | 右クリック：暗くなる\"}'",
+        "format": "   ",
+        "return-type": "json",
+        "tooltip": "true",
+        "on-click": "brightnessctl s +4% ",
+        "on-click-right": "brightnessctl s 4%-",
+},
 
 //youtubeの検索
 "custom/youtube": {
@@ -160,6 +170,7 @@
     "tooltip": true,
     "on-click": "pcmanfm",
     "on-click-right": "killall pcmanfm",
+    "on-click-middle": "terminator -e ranger",
 },
 
 
