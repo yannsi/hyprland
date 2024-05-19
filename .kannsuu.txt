@@ -123,7 +123,6 @@ echo -e "\n"
 python3 -m http.server 7777 ; cd
 }
 ###################################################
-
 #export DIALOGRC=/home/kamisato/.dlog
 ####################################################
 #streamlink
@@ -267,80 +266,6 @@ tput sgr0
 #######################################################
 zimakujpa() { firefox https://translatesubtitles.co; }
 ######################################################
-slack-bot() {
-clear
-WEBHOOK_URL="https://hooks.slack.com/services/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"
-MESSAGE="$(gum write --header="slack botへメッセージ (CTRL+D で送信)")" && : || exit 1
-icv=$(echo "$MESSAGE" | iconv -t UTF-8)
-PAYLOAD="payload={\"attachments\": [{ \"color\": \"#ff00ff\", \"text\": \"$icv\"}] }"
-curl -XPOST --data-urlencode "${PAYLOAD}" \
- "$WEBHOOK_URL" > /dev/null && tput setaf 6 && echo -e "\n 送信完了\n" ; tput sgr0
-}
-#####################################################
-slack-ugokiari() {
-clear
-WEBHOOK_URL="https://hooks.slack.com/services/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"
-MESSAGE="$(gum write --header="slack 動きありへメッセージ (CTRL+D で送信)")" && : || exit 1
-icv=$(echo "$MESSAGE" | iconv -t UTF-8)
-PAYLOAD="payload={\"attachments\": [{ \"color\": \"#7fff00\", \"text\": \"$icv\"}] }"
-curl -XPOST --data-urlencode "${PAYLOAD}" \
- "$WEBHOOK_URL" > /dev/null && tput setaf 6 && echo -e "\n 送信完了\n" ; tput sgr0
-}
-######################################################
-slack-zibun() {
-clear
-WEBHOOK_URL="https://hooks.slack.com/services/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"
-MESSAGE="$(gum write --header="slack 自分へメッセージ (Ctrl + D で送信)")" && : || exit 1
-icv=$(echo "$MESSAGE" | iconv -t UTF-8)
-PAYLOAD="payload={\"attachments\": [{ \"color\": \"#1e90ff\", \"text\": \"$icv\"}] }"
-curl -XPOST --data-urlencode "${PAYLOAD}" \
- "$WEBHOOK_URL" > /dev/null && tput setaf 6 && echo -e "\n 送信完了\n" ; tput sgr0 
-}
-######################################################
-discord-hook() {
-clear
-
-# Webhook URL
-WEBHOOK_URL="https://discord.com/api/webhooks/1164700832378404944/XlTPnkC46BiAM8-h1G9wLtBM6M6Y_InujF_Rm-WxxIYOkYwUUNkH5guXfBaMd4znMDtk"
-
-# メッセージコンテンツ
-MESSAGE="$(gum input --header="discord 一般へメッセージ (Enter で送信)(改行は \r を入力)")" || exit 1
-
-# リクエストボディ
-REQUEST_BODY="{\"content\":\"$MESSAGE\"}"
-
-# POSTリクエストを送信
-curl -X POST -H "Content-Type: application/json" -d "$REQUEST_BODY" "$WEBHOOK_URL"
-}
-#####################################################
-discord-file() {
-clear
-
-# Webhook URL
-WEBHOOK_URL="https://discord.com/api/webhooks/1164700832378404944/XlTPnkC46BiAM8-h1G9wLtBM6M6Y_InujF_Rm-WxxIYOkYwUUNkH5guXfBaMd4znMDtk"
-
-tput setaf 5 && echo -e "discordへファイルを送信"
-tput sgr0
-
-FILE="$(gum file -a)" || exit 1
-
-$HOME/.local/bin/http -f $WEBHOOK_URL \
-payload_json='{"username": "sk", "content": "'"$*"'"}' \
-file1@"$FILE" > /dev/null && tput setaf 6 && echo -e "\n 送信完了 ----> "$FILE"\n" ; tput sgr0 
-}
-######################################################
-discord-msg() {
-clear
-
-# Webhook URL
-WEBHOOK_URL="https://discord.com/api/webhooks/1164700832378404944/XlTPnkC46BiAM8-h1G9wLtBM6M6Y_InujF_Rm-WxxIYOkYwUUNkH5guXfBaMd4znMDtk"
-
-# メッセージ
-MESSAGE="$(gum input --header="discord 一般へメッセージ (Enter で送信)(改行は \r を入力)")" || exit 1
-
-echo '{"username": "sk", "content": "'"$MESSAGE"'"}' | $HOME/.local/bin/http $WEBHOOK_URL > /dev/null && tput setaf 6 && echo -e "\n 送信完了\n" ; tput sgr0
-}
-#####################################################
 qr-print() {
 qr=$(gum input --header=画面にQRコードを表示)
 qrencode -t UTF8 "$qr"
