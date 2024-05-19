@@ -10,7 +10,7 @@
 ---
 
 
-### pacman -Qen
+### pacman -Qn
 
 - adapta-gtk-theme
 - alsa-utils
