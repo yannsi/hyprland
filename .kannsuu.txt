@@ -386,3 +386,265 @@ kktxt() {
 curl https://raw.githubusercontent.com/yannsi/hyprland/main/.kannsuu.txt
 }
 ######################################################
+vcard1() {
+clear
+
+echo -e "+-+-+-+-+-+\n|v|C|a|r|d|\n+-+-+-+-+-+"
+echo -e "*********************************************************
+* vCardとQRコードを作成します
+* 入力後はEnterを押して進んでください
+* 入力しない場合は、何も入力せずにEnterを押してください
+* 終了する場合はキーボードの Ctrl + c を押してください
+*********************************************************"
+
+help() {
+cat <<eof
+*********************************************************
+* 入力しない場合は、何も入力せずにEnterを押してください 
+* 終了する場合はキーボードの Ctrl + c を押してください   
+*********************************************************
+eof
+}
+
+sleep 1
+
+echo -e "\e[91m\e[4m名前を入力してください\e[24m\e[0m"
+echo -e "\n"
+read -p " 姓？ > " name1
+echo -e " $name1\n"
+sleep 1
+read -p " 名？ > " name2
+echo -e " $name2\n\n\n"
+
+clear
+sleep 1
+help
+
+echo -e "\e[91m\e[4m電話番号を入力してください\e[24m\e[0m"
+echo -e "\n"
+read -p " 携帯？ > " tel1
+echo -e " $tel1\n"
+sleep 1
+read -p " 固定電話？ > " tel2
+echo -e " $tel2\n"
+sleep 1
+read -p " 職場？ > " tel3
+echo -e " $tel3\n\n\n"
+
+clear
+sleep 1
+help
+
+echo -e "\e[91m\e[4m住所を入力してください\e[24m\e[0m"
+echo -e "\n"
+read -p " 国名？ > " pref7
+echo -e " $pref7\n"
+sleep 1
+read -p " 都道府県？ > " pref1
+echo -e " $pref1\n"
+sleep 1
+read -p " 市区町村？ > " pref2
+echo -e " $pref2\n"
+sleep 1
+read -p " 町名（字名）？ > " pref3
+echo -e " $pref3\n"
+sleep 1
+read -p " 番地？ > " pref4
+echo -e " $pref4\n"
+sleep 1
+read -p " その他（建物名、部屋番合）？ > " pref5
+echo -e " $pref5\n"
+sleep 1
+read -p " 郵便番号？ > " pref6
+echo -e " $pref6\n\n\n"
+
+clear
+sleep 1
+help
+
+echo -e "\e[91m\e[4m職場名を入力してください\e[24m\e[0m"
+echo -e "\n"
+read -p " 職場名？ > " work1
+echo -e " $work1\n"
+sleep 1
+read -p " 職場名（カタカナ）？ > " work2
+echo -e " $work2\n\n\n"
+
+clear
+sleep 1
+help
+
+echo -e "\e[91m\e[4m職場の住所を入力してください\e[24m\e[0m"
+echo -e "\n"
+read -p " 国名？ > " work9
+echo -e " $work9\n"
+sleep 1
+read -p " 都道府県？ > " work3
+echo -e " $work3\n"
+sleep 1
+read -p " 市区町村？ > " work3
+echo -e " $work4\n"
+sleep 1
+read -p " 町名（字名）？ > " work3
+echo -e " $work5\n"
+sleep 1
+read -p " 番地？ > " work3
+echo -e " $work6\n"
+sleep 1
+read -p " その他（建物名、部屋番合）？ > " work3
+echo -e " $work7\n"
+sleep 1
+read -p " 郵便番号？ > " work3
+echo -e " $work8\n\n\n"
+
+clear
+sleep 1
+help
+
+echo -e "\e[91m\e[4mメールを入力してください\e[24m\e[0m"
+echo -e "\n"
+read -p " メール？ > " mail1
+echo -e " $mail1\n"
+sleep 1
+read -p " 追加メール？ > " mail2
+echo -e " $mail2\n\n\n"
+
+tmp=$(mktemp -d "vCard_"$name1""$name2"XXXXX")
+
+cat << eof > $HOME/"$tmp"/vCard_"$name1""$name2".vcf
+BEGIN:VCARD
+VERSION:3.0
+N:$name1;$name2;;;
+FN:$name1$name2
+ORG:$work1;
+X-PHONETIC-ORG:$work2
+TEL;type=CELL;type=VOICE:$tel1
+TEL;type=HOME;type=VOICE;type=pref:$tel2
+TEL;type=WORK;type=VOICE:$tel3
+ADR;type=HOME;type=pref:;$pref5;$pref3\n$pref4;$pref2;$pref1;$pref6;$pref7
+ADR;type=work;type=pref:;$work7;$work5\n$work6;$work4;$work3;$work8;$work9
+EMAIL;type=INTERNET;type=HOME;type=pref:$mail1
+item1.EMAIL;type=INTERNET:$mail2
+END:VCARD
+eof
+
+
+qrencode -r $HOME/"$tmp"/"vCard_$name1""$name2".vcf -o $HOME/"$tmp"/"qrコード_"$name1""$name2".png"
+
+clear
+
+echo -e "\e[96m完了しました\n保存場所（フォルダ名） -----> $HOME/"$tmp"\e[0m"
+
+qrencode -r $HOME/"$tmp"/"vCard_$name1""$name2".vcf -t utf8
+
+#exit 0
+}
+#########################################################
+vcard2() {
+clear
+
+echo -e "+-+-+-+-+-+\n|v|C|a|r|d|\n+-+-+-+-+-+"
+echo -e "*********************************************************
+* vCardとQRコードを作成します
+* 入力後はEnterを押して進んでください
+* 入力しない場合は、何も入力せずにEnterを押してください
+* 終了する場合はキーボードの Ctrl + c を押してください
+*********************************************************"
+
+help() {
+cat <<eof
+*********************************************************
+* 入力しない場合は、何も入力せずにEnterを押してください 
+* キャンセルする場合はキーボードの Ctrl + c を押してください   
+*********************************************************
+eof
+}
+
+sleep 1
+
+echo -e "\e[91m\e[4m名前を入力してください\e[24m\e[0m"
+echo -e "\n"
+read -p " 姓？ > " name1
+echo -e " $name1\n"
+sleep 1
+read -p " 名？ > " name2
+echo -e " $name2\n\n\n"
+
+clear
+sleep 1
+help
+
+echo -e "\e[91m\e[4m電話番号を入力してください\e[24m\e[0m"
+echo -e "\n"
+read -p " 携帯？ > " tel1
+echo -e " $tel1\n"
+sleep 1
+read -p " 固定電話？ > " tel2
+echo -e " $tel2\n"
+sleep 1
+
+clear
+sleep 1
+help
+
+echo -e "\e[91m\e[4m住所を入力してください\e[24m\e[0m"
+echo -e "\n"
+
+read -p " 都道府県？ > " pref1
+echo -e " $pref1\n"
+sleep 1
+read -p " 市区町村？ > " pref2
+echo -e " $pref2\n"
+sleep 1
+read -p " 町名（字名）？ > " pref3
+echo -e " $pref3\n"
+sleep 1
+read -p " 番地？ > " pref4
+echo -e " $pref4\n"
+sleep 1
+read -p " その他（建物名、部屋番合）？ > " pref5
+echo -e " $pref5\n"
+sleep 1
+read -p " 郵便番号？ > " pref6
+echo -e " $pref6\n\n\n"
+
+clear
+sleep 1
+help
+
+echo -e "\e[91m\e[4mメールを入力してください\e[24m\e[0m"
+echo -e "\n"
+read -p " メール？ > " mail1
+echo -e " $mail1\n"
+sleep 1
+read -p " 追加メール？ > " mail2
+echo -e " $mail2\n\n\n"
+
+tmp=$(mktemp -d "vCard_"$name1""$name2"XXXXX")
+
+cat << eof > $HOME/"$tmp"/vCard_"$name1""$name2".vcf
+BEGIN:VCARD
+VERSION:3.0
+N:$name1;$name2;;;
+FN:$name1$name2
+TEL;type=CELL;type=VOICE:$tel1
+TEL;type=HOME;type=VOICE;type=pref:$tel2
+TEL;type=WORK;type=VOICE:$tel3
+ADR;type=HOME;type=pref:;$pref5;$pref3\n$pref4;$pref2;$pref1;$pref6;$pref7
+EMAIL;type=INTERNET;type=HOME;type=pref:$mail1
+item1.EMAIL;type=INTERNET:$mail2
+END:VCARD
+eof
+
+
+qrencode -r $HOME/"$tmp"/"vCard_$name1""$name2".vcf -o $HOME/"$tmp"/"qrコード_"$name1""$name2".png"
+
+clear
+
+echo -e "\e[96m完了しました\n保存場所（フォルダ名） -----> $HOME/"$tmp"\e[0m"
+echo -e "\n"
+qrencode -r $HOME/"$tmp"/"vCard_$name1""$name2".vcf -t UTF8
+
+}
+#########################################################
+
