@@ -565,7 +565,30 @@ clear
 echo -e "\e[96m完了しました\n保存場所（フォルダ名） -----> $HOME/"$tmp"\e[0m"
 echo -e "\n"
 qrencode -r $HOME/"$tmp"/"vCard_$name1""$name2".vcf -t UTF8
-
 }
 #########################################################
+wifi_qr() {
+echo -e "・wi-fi接続するためのQRコードを作成します。\n・キャンセルするには Ctrl + c を押してください。\n"
+echo -e "\e[91m\e[4mSSIDを入力してください\e[24m\e[0m"
+echo -e "\n"
+read -p " SSID ? > " ssid1
+echo -e " $ssid1\n"
+sleep 1
+echo -e "\e[91m\e[4mパスワードを入力してください\e[24m\e[0m"
+echo -e "\n"
+read -p " パスワード ? > " passwd1
+echo -e " $passwd1\n\n\n"
+echo -e "WIFI:T:WPA;S:$ssid1;P:$passwd1;;" > $ssid1.txt
+sleep 1
 
+clear
+echo -e "\n"
+
+qrencode -r $HOME/"$ssid1".txt -t UTF8
+qrencode -r $HOME/$ssid1.txt -o $ssid1.png
+convert -pointsize 9 -annotate +10+110 $ssid1 $HOME/$ssid1.png $HOME/$ssid1.png
+
+echo -e "$HOME/$ssid1.png を保存しました。\n"
+rm $HOME/$ssid1.txt
+}
+####################################################
