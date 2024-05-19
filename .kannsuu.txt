@@ -49,7 +49,7 @@ export VIDEO_FORMAT=NTSC
 
 
 tenki() {
-location=${1:-真嘉比}
+location=${1:-沖縄}
 curl ja.wttr.in/$location
 }
 
