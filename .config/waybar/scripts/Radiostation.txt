@@ -1,15 +1,15 @@
 Smooth_Jazz（スムースジャズ） https://smoothjazz.cdnstream1.com/2585_320.mp3
 Smooth_Lounge（ラウンジジャズ） https://smoothjazz.cdnstream1.com/2586_320.mp3
-COLECTION（ラジオ局のコレクション） https://play.antenne.de/antenne.m3u
-OLDIES（オールディーズ） https://play.oldie-antenne.de/oldie-antenne.m3u
-ROCK（ロック） https://play.rockantenne.de/rockantenne.m3u
+COLECTION（ラジオ局のコレクション） https://stream.antenne.de/antenne/stream/mp3
+OLDIES（オールディーズ） https://stream.antenne.de/oldie-antenne/stream/mp3
+ROCK（ロック） mpv https://stream.antenne.de/rockantenne-bayern/stream/mp3
 70s_Hits（70年代ヒット） https://play.antenne.de/70er-hits.m3u
-80s_Hits（80年代ヒット） https://play.antenne.de/80er-kulthits.m3u
+80s_Hits（80年代ヒット） mpv https://stream.antenne.de/80er-kulthits/stream/mp3
 90s_Hits（90年代ヒット） https://play.antenne.de/90er-hits.m3u
-Classic_Rock（クラシックロック） https://play.antenne.de/classic-rock-live.m3u
-Coffee_Music（コーヒータイムミュージック） https://play.antenne.de/coffee.m3u
+Classic_Rock（クラシックロック） https://stream.antenne.de/classic-rock-live/stream/mp3
+Coffee_Music（コーヒータイムミュージック） https://stream.antenne.de/coffee/stream/mp3
 Black_Music（ブラックミュージック） https://play.antenne.de/black-beatz.m3u
-Greatest_Hits（グレイテストヒッツ） https://play.antenne.de/greatest-hits.m3u
+Greatest_Hits（グレイテストヒッツ） https://stream.antenne.de/greatest-hits/stream/mp3
 Happy_Hits（ハッピーミュージック） https://play.antenne.de/happy-hits.m3u
 Lovesongs（ラブソング） https://play.antenne.de/lovesongs.m3u
 Party_Hits（パーティーミュージック） https://play.antenne.de/party-hits.m3u
