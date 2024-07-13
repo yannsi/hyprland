@@ -142,7 +142,7 @@
 
 //バックライト
 "custom/backlight": {
-        "exec": "echo -e '{\"tooltip\": \"バックライト(左クリック：明るくなる | 右クリック：暗くなる\"}'",
+        "exec": "echo -e '{\"tooltip\": \"バックライト(左クリック：明るくなる | 右クリック：暗くなる)\"}'",
         "format": "   ",
         "return-type": "json",
         "tooltip": "true",
@@ -158,7 +158,7 @@
     "tooltip": "true",
     "on-click": "firefox --new-window https://www.youtube.com/",
     "on-click-right": "bash $HOME/.config/waybar/scripts/mmv0.sh",
-    //"on-click-middle": "killall mpv",
+    "on-click-middle": "terminator -e $HOME/.local/bin/yt",
 },
 
 
@@ -170,7 +170,7 @@
     "tooltip": true,
     "on-click": "pcmanfm",
     "on-click-right": "killall pcmanfm",
-    "on-click-middle": "terminator -e ranger",
+    "on-click-middle": "foot -e yazi",
 },
 
 
@@ -222,7 +222,7 @@
     "return-type": "json",
     "tooltip": true,
     "on-click": "mpv https://smoothjazz.cdnstream1.com/2585_128.mp3",
-    "on-click-right": "mpv https://play.antenne.de/classic-rock-live.m3u",
+    "on-click-right": "mpv https://stream.antenne.de/classic-rock-live/stream/mp3",
     "on-click-middle": "bash $HOME/.config/waybar/scripts/radiostation.sh",
 },
 
@@ -241,7 +241,7 @@
 
 //壁紙設定
 "custom/wallpaper": {
-    "format": "  ",
+    "format": "   ",
     "exec": "echo -e '{\"tooltip\": \"壁紙設定\"}'",
     "return-type": "json",
     "tooltip": true,
