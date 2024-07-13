@@ -374,10 +374,6 @@ daunrood() {
 yt-dlp --external-downloader aria2c --external-downloader-args '-c -j 3 -x 3 -s 3 -k 1M' $1
 }
 ######################################################
-outi() {
-echo -e "郵便番号：902-0068\n住所：沖縄県那覇市真嘉比2−5−18\n伸也電話：090-1089-9711\nともみ電話：090-7446-4896\n凌羽電話：080-6490-5442\n大悟電話：090-3794-1055"
-}
-######################################################
 yannsi_git_hyprland() {
 git clone https://github.com/yannsi/hyprland.git
 }
