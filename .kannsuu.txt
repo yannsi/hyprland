@@ -1,21 +1,21 @@
 afn() { mpv --playlist=http://playerservices.streamtheworld.com/pls/AFNP_OKNAAC.pls; }
 
-rock() { mpv --playlist=http://play.rockantenne.de/rockantenne.m3u; }
+rock() { mpv https://stream.antenne.de/rockantenne-bayern/stream/mp3; }
 
-antennebayern() { mpv --playlist=http://play.antenne.de/antenne.m3u; }
+antennebayern() { mpv https://stream.antenne.de/antenne/stream/mp3; }
 
-80shits() { mpv --playlist=https://play.antenne.de/80er-kulthits.m3u; }
+80shits() { mpv https://stream.antenne.de/80er-kulthits/stream/mp3; }
 
-oldies() { mpv --playlist=http://play.oldie-antenne.de/oldie-antenne.m3u; }
+oldies() { mpv https://stream.antenne.de/oldie-antenne/stream/mp3; }
 
-coffeemusic() { mpv --playlist=https://play.antenne.de/coffee.m3u; }
+coffeemusic() { mpv https://stream.antenne.de/coffee/stream/mp3; }
 
-gratesthits() { mpv --playlist=https://play.antenne.de/greatest-hits.m3u; }
+gratesthits() { mpv https://stream.antenne.de/greatest-hits/stream/mp3; }
 
 smoothjazz() { mpv https://smoothjazz.cdnstream1.com/2585_128.mp3; }
 smoothjazz_lounge() { mpv https://smoothjazz.cdnstream1.com/2586_128.mp3; }
 
-classicrock() { mpv --playlist=https://play.antenne.de/classic-rock-live.m3u; }
+classicrock() { mpv https://stream.antenne.de/classic-rock-live/stream/mp3; }
 
 
 neon() {
@@ -49,7 +49,7 @@ export VIDEO_FORMAT=NTSC
 
 
 tenki() {
-location=${1:-沖縄}
+location=${1:-真嘉比}
 curl ja.wttr.in/$location
 }
 
@@ -70,7 +70,7 @@ echo -e "\n\e[94mvncサーバーを起動しました\e[0m\n"
 
 
 #eval "$(gh completion -s bash)"
-eval "$(starship init bash)"
+
 
 ###################################################
 function mma() {
@@ -123,6 +123,7 @@ echo -e "\n"
 python3 -m http.server 7777 ; cd
 }
 ###################################################
+
 #export DIALOGRC=/home/kamisato/.dlog
 ####################################################
 #streamlink
@@ -130,7 +131,7 @@ nikkei2() { streamlink -p mpv 'https://radiko.jp/#!/live/RN2' best; }
 rbc() { streamlink -p mpv 'https://radiko.jp/#!/live/RBC' best; }
 rok() { streamlink -p mpv 'https://radiko.jp/#!/live/ROK' best; }
 nhk_fm() { streamlink -p mpv 'https://radiko.jp/#!/live/JOAK-FM' best; }
-nhk1() { streamlink -p mpv 'https://radiko.jp/#!/live/JOLK' best; }
+nhk1() { streamlink -p mpv 'https://radiko.jp/#!/live/JOBK' best; }
 abema1() { streamlink -p mpv https://abema.tv/now-on-air/world-sports-1 best; }
 abema2() { streamlink -p mpv https://abema.tv/now-on-air/world-sports-2 best; }
 
@@ -266,6 +267,80 @@ tput sgr0
 #######################################################
 zimakujpa() { firefox https://translatesubtitles.co; }
 ######################################################
+slack-bot() {
+clear
+WEBHOOK_URL="https://hooks.slack.com/services/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"
+MESSAGE="$(gum write --header="slack botへメッセージ (CTRL+D で送信)")" && : || exit 1
+icv=$(echo "$MESSAGE" | iconv -t UTF-8)
+PAYLOAD="payload={\"attachments\": [{ \"color\": \"#ff00ff\", \"text\": \"$icv\"}] }"
+curl -XPOST --data-urlencode "${PAYLOAD}" \
+ "$WEBHOOK_URL" > /dev/null && tput setaf 6 && echo -e "\n 送信完了\n" ; tput sgr0
+}
+#####################################################
+slack-ugokiari() {
+clear
+WEBHOOK_URL="https://hooks.slack.com/services/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"
+MESSAGE="$(gum write --header="slack 動きありへメッセージ (CTRL+D で送信)")" && : || exit 1
+icv=$(echo "$MESSAGE" | iconv -t UTF-8)
+PAYLOAD="payload={\"attachments\": [{ \"color\": \"#7fff00\", \"text\": \"$icv\"}] }"
+curl -XPOST --data-urlencode "${PAYLOAD}" \
+ "$WEBHOOK_URL" > /dev/null && tput setaf 6 && echo -e "\n 送信完了\n" ; tput sgr0
+}
+######################################################
+slack-zibun() {
+clear
+WEBHOOK_URL="https://hooks.slack.com/services/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"
+MESSAGE="$(gum write --header="slack 自分へメッセージ (Ctrl + D で送信)")" && : || exit 1
+icv=$(echo "$MESSAGE" | iconv -t UTF-8)
+PAYLOAD="payload={\"attachments\": [{ \"color\": \"#1e90ff\", \"text\": \"$icv\"}] }"
+curl -XPOST --data-urlencode "${PAYLOAD}" \
+ "$WEBHOOK_URL" > /dev/null && tput setaf 6 && echo -e "\n 送信完了\n" ; tput sgr0 
+}
+######################################################
+discord-hook() {
+clear
+
+# Webhook URL
+WEBHOOK_URL="https://discord.com/api/webhooks/1164700832378404944/XlTPnkC46BiAM8-h1G9wLtBM6M6Y_InujF_Rm-WxxIYOkYwUUNkH5guXfBaMd4znMDtk"
+
+# メッセージコンテンツ
+MESSAGE="$(gum input --header="discord 一般へメッセージ (Enter で送信)(改行は \r を入力)")" || exit 1
+
+# リクエストボディ
+REQUEST_BODY="{\"content\":\"$MESSAGE\"}"
+
+# POSTリクエストを送信
+curl -X POST -H "Content-Type: application/json" -d "$REQUEST_BODY" "$WEBHOOK_URL"
+}
+#####################################################
+discord-file() {
+clear
+
+# Webhook URL
+WEBHOOK_URL="https://discord.com/api/webhooks/1164700832378404944/XlTPnkC46BiAM8-h1G9wLtBM6M6Y_InujF_Rm-WxxIYOkYwUUNkH5guXfBaMd4znMDtk"
+
+tput setaf 5 && echo -e "discordへファイルを送信"
+tput sgr0
+
+FILE="$(gum file -a)" || exit 1
+
+$HOME/.local/bin/http -f $WEBHOOK_URL \
+payload_json='{"username": "sk", "content": "'"$*"'"}' \
+file1@"$FILE" > /dev/null && tput setaf 6 && echo -e "\n 送信完了 ----> "$FILE"\n" ; tput sgr0 
+}
+######################################################
+discord-msg() {
+clear
+
+# Webhook URL
+WEBHOOK_URL="https://discord.com/api/webhooks/1164700832378404944/XlTPnkC46BiAM8-h1G9wLtBM6M6Y_InujF_Rm-WxxIYOkYwUUNkH5guXfBaMd4znMDtk"
+
+# メッセージ
+MESSAGE="$(gum input --header="discord 一般へメッセージ (Enter で送信)(改行は \r を入力)")" || exit 1
+
+echo '{"username": "sk", "content": "'"$MESSAGE"'"}' | $HOME/.local/bin/http $WEBHOOK_URL > /dev/null && tput setaf 6 && echo -e "\n 送信完了\n" ; tput sgr0
+}
+#####################################################
 qr-print() {
 qr=$(gum input --header=画面にQRコードを表示)
 qrencode -t UTF8 "$qr"
@@ -299,296 +374,23 @@ daunrood() {
 yt-dlp --external-downloader aria2c --external-downloader-args '-c -j 3 -x 3 -s 3 -k 1M' $1
 }
 ######################################################
+outi() {
+echo -e "郵便番号：902-0068\n住所：沖縄県那覇市真嘉比2−5−18\n伸也電話：090-1089-9711\nともみ電話：090-7446-4896\n凌羽電話：080-6490-5442\n大悟電話：090-3794-1055"
+}
+######################################################
 yannsi_git_hyprland() {
 git clone https://github.com/yannsi/hyprland.git
+}
+######################################################
+hyprsh() {
+curl https://raw.githubusercontent.com/yannsi/hyprland/main/hyprlanddotfile.sh | bash
 }
 ######################################################
 kktxt() {
 curl https://raw.githubusercontent.com/yannsi/hyprland/main/.kannsuu.txt
 }
 ######################################################
-vcard1() {
-clear
-
-echo -e "+-+-+-+-+-+\n|v|C|a|r|d|\n+-+-+-+-+-+"
-echo -e "*********************************************************
-* vCardとQRコードを作成します
-* 入力後はEnterを押して進んでください
-* 入力しない場合は、何も入力せずにEnterを押してください
-* 終了する場合はキーボードの Ctrl + c を押してください
-*********************************************************"
-
-help() {
-cat <<eof
-*********************************************************
-* 入力しない場合は、何も入力せずにEnterを押してください 
-* 終了する場合はキーボードの Ctrl + c を押してください   
-*********************************************************
-eof
+fmsound() {
+ffmpeg -i "$1" -ar 22050 -ac 1 "$2"
 }
-
-sleep 1
-
-echo -e "\e[91m\e[4m名前を入力してください\e[24m\e[0m"
-echo -e "\n"
-read -p " 姓？ > " name1
-echo -e " $name1\n"
-sleep 1
-read -p " 名？ > " name2
-echo -e " $name2\n\n\n"
-
-clear
-sleep 1
-help
-
-echo -e "\e[91m\e[4m電話番号を入力してください\e[24m\e[0m"
-echo -e "\n"
-read -p " 携帯？ > " tel1
-echo -e " $tel1\n"
-sleep 1
-read -p " 固定電話？ > " tel2
-echo -e " $tel2\n"
-sleep 1
-read -p " 職場？ > " tel3
-echo -e " $tel3\n\n\n"
-
-clear
-sleep 1
-help
-
-echo -e "\e[91m\e[4m住所を入力してください\e[24m\e[0m"
-echo -e "\n"
-read -p " 国名？ > " pref7
-echo -e " $pref7\n"
-sleep 1
-read -p " 都道府県？ > " pref1
-echo -e " $pref1\n"
-sleep 1
-read -p " 市区町村？ > " pref2
-echo -e " $pref2\n"
-sleep 1
-read -p " 町名（字名）？ > " pref3
-echo -e " $pref3\n"
-sleep 1
-read -p " 番地？ > " pref4
-echo -e " $pref4\n"
-sleep 1
-read -p " その他（建物名、部屋番合）？ > " pref5
-echo -e " $pref5\n"
-sleep 1
-read -p " 郵便番号？ > " pref6
-echo -e " $pref6\n\n\n"
-
-clear
-sleep 1
-help
-
-echo -e "\e[91m\e[4m職場名を入力してください\e[24m\e[0m"
-echo -e "\n"
-read -p " 職場名？ > " work1
-echo -e " $work1\n"
-sleep 1
-read -p " 職場名（カタカナ）？ > " work2
-echo -e " $work2\n\n\n"
-
-clear
-sleep 1
-help
-
-echo -e "\e[91m\e[4m職場の住所を入力してください\e[24m\e[0m"
-echo -e "\n"
-read -p " 国名？ > " work9
-echo -e " $work9\n"
-sleep 1
-read -p " 都道府県？ > " work3
-echo -e " $work3\n"
-sleep 1
-read -p " 市区町村？ > " work3
-echo -e " $work4\n"
-sleep 1
-read -p " 町名（字名）？ > " work3
-echo -e " $work5\n"
-sleep 1
-read -p " 番地？ > " work3
-echo -e " $work6\n"
-sleep 1
-read -p " その他（建物名、部屋番合）？ > " work3
-echo -e " $work7\n"
-sleep 1
-read -p " 郵便番号？ > " work3
-echo -e " $work8\n\n\n"
-
-clear
-sleep 1
-help
-
-echo -e "\e[91m\e[4mメールを入力してください\e[24m\e[0m"
-echo -e "\n"
-read -p " メール？ > " mail1
-echo -e " $mail1\n"
-sleep 1
-read -p " 追加メール？ > " mail2
-echo -e " $mail2\n\n\n"
-
-tmp=$(mktemp -d "vCard_"$name1""$name2"XXXXX")
-
-cat << eof > $HOME/"$tmp"/vCard_"$name1""$name2".vcf
-BEGIN:VCARD
-VERSION:3.0
-N:$name1;$name2;;;
-FN:$name1$name2
-ORG:$work1;
-X-PHONETIC-ORG:$work2
-TEL;type=CELL;type=VOICE:$tel1
-TEL;type=HOME;type=VOICE;type=pref:$tel2
-TEL;type=WORK;type=VOICE:$tel3
-ADR;type=HOME;type=pref:;$pref5;$pref3\n$pref4;$pref2;$pref1;$pref6;$pref7
-ADR;type=work;type=pref:;$work7;$work5\n$work6;$work4;$work3;$work8;$work9
-EMAIL;type=INTERNET;type=HOME;type=pref:$mail1
-item1.EMAIL;type=INTERNET:$mail2
-END:VCARD
-eof
-
-
-qrencode -r $HOME/"$tmp"/"vCard_$name1""$name2".vcf -o $HOME/"$tmp"/"qrコード_"$name1""$name2".png"
-
-clear
-
-echo -e "\e[96m完了しました\n保存場所（フォルダ名） -----> $HOME/"$tmp"\e[0m"
-
-qrencode -r $HOME/"$tmp"/"vCard_$name1""$name2".vcf -t utf8
-
-#exit 0
-}
-#########################################################
-vcard2() {
-clear
-
-echo -e "+-+-+-+-+-+\n|v|C|a|r|d|\n+-+-+-+-+-+"
-echo -e "*********************************************************
-* vCardとQRコードを作成します
-* 入力後はEnterを押して進んでください
-* 入力しない場合は、何も入力せずにEnterを押してください
-* 終了する場合はキーボードの Ctrl + c を押してください
-*********************************************************"
-
-help() {
-cat <<eof
-*********************************************************
-* 入力しない場合は、何も入力せずにEnterを押してください 
-* キャンセルする場合はキーボードの Ctrl + c を押してください   
-*********************************************************
-eof
-}
-
-sleep 1
-
-echo -e "\e[91m\e[4m名前を入力してください\e[24m\e[0m"
-echo -e "\n"
-read -p " 姓？ > " name1
-echo -e " $name1\n"
-sleep 1
-read -p " 名？ > " name2
-echo -e " $name2\n\n\n"
-
-clear
-sleep 1
-help
-
-echo -e "\e[91m\e[4m電話番号を入力してください\e[24m\e[0m"
-echo -e "\n"
-read -p " 携帯？ > " tel1
-echo -e " $tel1\n"
-sleep 1
-read -p " 固定電話？ > " tel2
-echo -e " $tel2\n"
-sleep 1
-
-clear
-sleep 1
-help
-
-echo -e "\e[91m\e[4m住所を入力してください\e[24m\e[0m"
-echo -e "\n"
-
-read -p " 都道府県？ > " pref1
-echo -e " $pref1\n"
-sleep 1
-read -p " 市区町村？ > " pref2
-echo -e " $pref2\n"
-sleep 1
-read -p " 町名（字名）？ > " pref3
-echo -e " $pref3\n"
-sleep 1
-read -p " 番地？ > " pref4
-echo -e " $pref4\n"
-sleep 1
-read -p " その他（建物名、部屋番合）？ > " pref5
-echo -e " $pref5\n"
-sleep 1
-read -p " 郵便番号？ > " pref6
-echo -e " $pref6\n\n\n"
-
-clear
-sleep 1
-help
-
-echo -e "\e[91m\e[4mメールを入力してください\e[24m\e[0m"
-echo -e "\n"
-read -p " メール？ > " mail1
-echo -e " $mail1\n"
-sleep 1
-read -p " 追加メール？ > " mail2
-echo -e " $mail2\n\n\n"
-
-tmp=$(mktemp -d "vCard_"$name1""$name2"XXXXX")
-
-cat << eof > $HOME/"$tmp"/vCard_"$name1""$name2".vcf
-BEGIN:VCARD
-VERSION:3.0
-N:$name1;$name2;;;
-FN:$name1$name2
-TEL;type=CELL;type=VOICE:$tel1
-TEL;type=HOME;type=VOICE;type=pref:$tel2
-TEL;type=WORK;type=VOICE:$tel3
-ADR;type=HOME;type=pref:;$pref5;$pref3\n$pref4;$pref2;$pref1;$pref6;$pref7
-EMAIL;type=INTERNET;type=HOME;type=pref:$mail1
-item1.EMAIL;type=INTERNET:$mail2
-END:VCARD
-eof
-
-
-qrencode -r $HOME/"$tmp"/"vCard_$name1""$name2".vcf -o $HOME/"$tmp"/"qrコード_"$name1""$name2".png"
-
-clear
-
-echo -e "\e[96m完了しました\n保存場所（フォルダ名） -----> $HOME/"$tmp"\e[0m"
-echo -e "\n"
-qrencode -r $HOME/"$tmp"/"vCard_$name1""$name2".vcf -t UTF8
-}
-#########################################################
-wifi_qr() {
-echo -e "・wi-fi接続するためのQRコードを作成します。\n・キャンセルするには Ctrl + c を押してください。\n"
-echo -e "\e[91m\e[4mSSIDを入力してください\e[24m\e[0m"
-echo -e "\n"
-read -p " SSID ? > " ssid1
-echo -e " $ssid1\n"
-sleep 1
-echo -e "\e[91m\e[4mパスワードを入力してください\e[24m\e[0m"
-echo -e "\n"
-read -p " パスワード ? > " passwd1
-echo -e " $passwd1\n\n\n"
-echo -e "WIFI:T:WPA;S:$ssid1;P:$passwd1;;" > $ssid1.txt
-sleep 1
-
-clear
-echo -e "\n"
-
-qrencode -r $HOME/"$ssid1".txt -t UTF8
-qrencode -r $HOME/$ssid1.txt -o $ssid1.png
-convert -pointsize 9 -annotate +10+110 $ssid1 $HOME/$ssid1.png $HOME/$ssid1.png
-
-echo -e "$HOME/$ssid1.png を保存しました。\n"
-rm $HOME/$ssid1.txt
-}
-####################################################
+######################################################
