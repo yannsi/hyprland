@@ -6,7 +6,7 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": ["custom/launcher", "custom/terminator", "custom/folder", "custom/firefox", "hyprland/workspaces", "custom/radio", "custom/youtube", "custom/media"],
+    "modules-left": ["custom/launcher", "custom/terminator", "custom/folder", "custom/firefox", "hyprland/workspaces", "custom/radio", "custom/youtube", "mpris"],
     "modules-center": ["custom/hyprpicker", "custom/flameshot", "custom/wallpaper", "custom/help"],
     "modules-right": ["tray", "wireplumber", "network", "custom/backlight", "custom/weather", "clock", "custom/logout"],
     
@@ -16,7 +16,9 @@
 
 //時計
 "clock": {
+        "timezone": "Asia/Tokyo",
 	"format": " {:%H:%M}",
+        "on-click-right": "foot -e tty-clock -c",
 	"tooltip": "true",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": " {:%m/%d}"
@@ -26,19 +28,10 @@
 //ワークスペース
 "hyprland/workspaces": {
 	"format": "{name}",
-	"format-icons": {
-	"active": "",
-	"default": "",
-	"persistent": "",
-	},
-	"on-scroll-up": "hyprctl dispatch workspace e+1",
-	"on-scroll-down": "hyprctl dispatch workspace e-1",
-	"all-outputs": false,
-	"persistent_workspaces": {
-	"*": 3,
-	},
+	"persistent-workspaces": {
+		"*": 3, // 3 workspaces by default on every monitor
+	}
 },
-
 
   "memory": {
     "format": "󰍛 {}%",
@@ -129,6 +122,25 @@
 },
 
 
+"mpris": {
+        "format": "{player_icon} {title}",
+        "format-paused": "{status_icon} <i>{title}</i>",
+        "player-icons": {
+                "default": "▶",
+                "mpv": "🎵"
+        },
+        "status-icons": {
+                "paused": "⏸"
+        },
+        "max-length":70,
+        "on-click-middle": "terminator -e cava",
+        "on-click-right": "playerctl stop"
+
+        // "ignored-players": ["firefox"]
+},
+
+
+
 //スクリーンショット
 "custom/flameshot": {
 	"exec": "echo -e '{\"tooltip\": \"スクリーンショット\"}'",
@@ -140,6 +152,7 @@
 },
 
 
+
 //バックライト
 "custom/backlight": {
         "exec": "echo -e '{\"tooltip\": \"バックライト(左クリック：明るくなる | 右クリック：暗くなる)\"}'",
@@ -149,6 +162,20 @@
         "on-click": "brightnessctl s +4% ",
         "on-click-right": "brightnessctl s 4%-",
 },
+
+
+"backlight/slider": {
+    "exec": "echo -e '{\"tooltip\": \"バックライトスライダー\"}'",
+    "format": "",
+    "return-type": "json",
+    "tooltip": "true",
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal",
+    "device": "intel_backlight"
+},
+
+
 
 //youtubeの検索
 "custom/youtube": {
