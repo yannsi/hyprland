@@ -1,2 +1,2 @@
 #!/bin/bash
-swaybg -i '/usr/share/hyprland/wall0.png'
+swaybg -i '/usr/share/hypr/wall1.png'
